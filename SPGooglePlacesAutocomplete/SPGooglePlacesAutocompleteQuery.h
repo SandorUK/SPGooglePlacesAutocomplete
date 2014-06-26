@@ -17,9 +17,13 @@
 
 @property (nonatomic, copy, readonly) SPGooglePlacesAutocompleteResultBlock resultBlock;
 
-+ (SPGooglePlacesAutocompleteQuery *)query;
+/*
+ * Designated initializer
+ * Must initialize an instance with a valid Google API key
+ */
+- (id)initWithApiKey:(NSString *)apiKey;
 
-/* Cancels all the requests. */
+/* Cancels all the requests */
 - (void)cancel;
 
 /*!
@@ -33,7 +37,7 @@
 /*!
  The text string on which to search. The Place service will return candidate matches based on this string and order results based on their perceived relevance. Defaults to nil.
  */
-@property (nonatomic, retain) NSString *input;
+@property (nonatomic, strong) NSString *input;
 
 /*!
  Indicates whether or not the Place request came from a device using a location sensor (e.g. a GPS) to determine the location sent in this request. This value must be either true or false. Defaults to YES.
@@ -43,7 +47,7 @@
 /*!
  Your application's API key. This key identifies your application for purposes of quota management. Visit the APIs Console to select an API Project and obtain your key. Maps API for Business customers must use the API project created for them as part of their Places for Business purchase. Defaults to kGoogleAPIKey.
  */
-@property (nonatomic, retain) NSString *key;
+@property (nonatomic, strong) NSString *key;
 
 #pragma mark -
 #pragma mark Optional parameters
@@ -66,12 +70,16 @@
 /*!
  The language in which to return results. See the supported list of domain languages. Note that we often update supported languages so this list may not be exhaustive. If language is not supplied, the Place service will attempt to use the native language of the domain from which the request is sent.
  */
-@property (nonatomic, retain) NSString *language;
+@property (nonatomic, strong) NSString *language;
 
 /*!
  The types of Place results to return. If no type is specified, all types will be returned.
  */
 @property (nonatomic) SPGooglePlacesAutocompletePlaceType types;
 
-@end
+/*!
+ The country code (ISO 3166-1 Alpha-2) to restrict the results to a certain country. Details https://developers.google.com/places/documentation/autocomplete
+ */
+@property (nonatomic, strong) NSString *countryCode;
 
+@end

@@ -121,7 +121,7 @@
     SPGooglePlacesAutocompletePlace *place = [self placeAtIndexPath:indexPath];
     [place resolveToPlacemark:^(CLPlacemark *placemark, NSString *addressString, NSError *error) {
         if (error) {
-            SPPresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
+            //SPPresentAlertViewWithErrorAndTitle(error, @"Could not map selected Place");
         } else if (placemark) {
             [self addPlacemarkAnnotationToMap:placemark addressString:addressString];
             [self recenterMapToPlacemark:placemark];
@@ -139,7 +139,7 @@
     searchQuery.input = searchString;
     [searchQuery fetchPlaces:^(NSArray *places, NSError *error) {
         if (error) {
-            SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
+            //SPPresentAlertViewWithErrorAndTitle(error, @"Could not fetch Places");
         } else {
             [searchResultPlaces release];
             searchResultPlaces = [places retain];

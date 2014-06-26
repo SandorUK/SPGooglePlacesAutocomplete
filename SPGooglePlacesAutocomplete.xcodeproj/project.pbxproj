@@ -55,6 +55,7 @@
 		9C4A63AD15B6C0DB00E15FBA /* locateButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locateButton@2x.png"; sourceTree = "<group>"; };
 		9C4A63B015B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesPlaceDetailQuery.h; sourceTree = "<group>"; };
 		9C4A63B115B73EA200E15FBA /* SPGooglePlacesPlaceDetailQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPGooglePlacesPlaceDetailQuery.m; sourceTree = "<group>"; };
+		A4A19B3B195C61A800DE1933 /* SPGooglePlacesAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPGooglePlacesAutocomplete.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +118,7 @@
 				9C4A633E15B64FA400E15FBA /* SPGooglePlacesAutocompletePlace.m */,
 				9C4A634415B6950B00E15FBA /* SPGooglePlacesAutocompleteViewController.h */,
 				9C4A634515B6950B00E15FBA /* SPGooglePlacesAutocompleteViewController.m */,
+				A4A19B3B195C61A800DE1933 /* SPGooglePlacesAutocomplete.h */,
 				9C4A634615B6950B00E15FBA /* SPGooglePlacesAutocompleteViewController.xib */,
 				9C4A632815B64A3F00E15FBA /* Supporting Files */,
 				9C4A63A315B6BFFC00E15FBA /* Resources */,
@@ -325,6 +327,7 @@
 				9C4A633715B64A3F00E15FBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
