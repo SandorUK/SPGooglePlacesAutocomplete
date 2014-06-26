@@ -67,7 +67,7 @@
     responseData = [[NSMutableData alloc] init];
 }
 
-- (NSDictionary *)fetchPlaceDetailsSynchronously:(NSError**) error{
+- (NSDictionary *)fetchPlaceDetailsSynchronously:(NSError*) error{
     if (!self.key) {
         return nil;
     }
@@ -81,7 +81,7 @@
     NSURLResponse *response;
     responseData = [[NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
-                                                     error:error] mutableCopy];
+                                                     error:&error] mutableCopy];
     if (!error) {
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&jsonError];

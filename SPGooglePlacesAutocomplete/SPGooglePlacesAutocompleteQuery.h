@@ -35,7 +35,7 @@
 /*!
  Pulls down places that match the query synchronously. If -fetchPlaces is called twice, the first request will be cancelled and the request will be re-issued using the current property values.
  */
-- (NSArray*)fetchPlacesSynchronously:(NSError**)error;
+- (NSArray*)fetchPlacesSynchronously:(NSError*)error;
 
 #pragma mark -
 #pragma mark Required parameters

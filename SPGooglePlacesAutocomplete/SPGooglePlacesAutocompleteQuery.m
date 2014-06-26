@@ -95,7 +95,7 @@
     responseData = [[NSMutableData alloc] init];
 }
 
-- (NSArray*)fetchPlacesSynchronously:(NSError**)error{
+- (NSArray*)fetchPlacesSynchronously:(NSError*)error{
     if (!self.key) {
         return nil;
     }
@@ -107,11 +107,14 @@
     
     [self cancelOutstandingRequests];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]
+                                             cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
+                                         timeoutInterval:15];
     NSURLResponse *response;
     responseData = [[NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
-                                                     error:error] mutableCopy];
+                                          returningResponse:&response
+                                                      error:&error] mutableCopy];
+    
     if (!error) {
         NSError *jsonError = nil;
         NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&jsonError];

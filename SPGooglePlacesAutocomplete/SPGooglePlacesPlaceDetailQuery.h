@@ -32,7 +32,7 @@
 /*!
  Issues a Place Details request and pulls down the results synchronously. If called twice, the first request will be cancelled and the request will be re-issued using the current property values.
  */
-- (NSDictionary *)fetchPlaceDetailsSynchronously:(NSError**) error;
+- (NSDictionary *)fetchPlaceDetailsSynchronously:(NSError*) error;
 
 #pragma mark -
 #pragma mark Required parameters
