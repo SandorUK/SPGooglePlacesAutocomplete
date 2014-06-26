@@ -60,4 +60,9 @@
  */
 @property (nonatomic, strong) NSString *language;
 
+/*!
+ Timeout in seconds used for synchronous call only.
+ */
+@property (nonatomic) NSUInteger timeout;
+
 @end

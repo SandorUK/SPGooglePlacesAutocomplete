@@ -88,4 +88,10 @@
  */
 @property (nonatomic, strong) NSString *countryCode;
 
+
+/*!
+ Timeout in seconds used for synchronous call only.
+ */
+@property (nonatomic) NSUInteger timeout;
+
 @end

@@ -21,6 +21,9 @@
         // Setup default property values.
         self.sensor = YES;
         self.key = apiKey;
+        if (!self.timeout) {
+            self.timeout = 10;
+        }
     }
     return self;
 }
@@ -75,8 +78,9 @@
     [self cancelOutstandingRequests];
     
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]
+                                             cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
+                                         timeoutInterval:self.timeout];
 
     NSURLResponse *response;
     responseData = [[NSURLConnection sendSynchronousRequest:request

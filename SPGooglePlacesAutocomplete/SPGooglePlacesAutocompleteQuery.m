@@ -25,6 +25,9 @@
         self.location = CLLocationCoordinate2DMake(-1, -1);
         self.radius = 500;
         self.types = SPPlaceTypeInvalid;
+        if (!self.timeout) {
+            self.timeout = 10;
+        }
     }
     return self;
 }
@@ -109,7 +112,7 @@
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]
                                              cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
-                                         timeoutInterval:15];
+                                         timeoutInterval:self.timeout];
     NSURLResponse *response;
     responseData = [[NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
