@@ -95,6 +95,49 @@
     responseData = [[NSMutableData alloc] init];
 }
 
+- (NSArray*)fetchPlacesSynchronously:(NSError**)error{
+    if (!self.key) {
+        return nil;
+    }
+    
+    if (SPIsEmptyString(self.input)) {
+        // Empty input string. Don't even bother hitting Google.
+        return nil;
+    }
+    
+    [self cancelOutstandingRequests];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
+    NSURLResponse *response;
+    responseData = [[NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response
+                                                     error:error] mutableCopy];
+    if (!error) {
+        NSError *jsonError = nil;
+        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&jsonError];
+        if (jsonError) {
+            [self failWithError:jsonError];
+            return nil;
+        }
+        
+        if ([response[@"status"] isEqualToString:@"ZERO_RESULTS"]) {
+            return [NSArray arrayWithObject:@""];
+        }
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            NSMutableArray *parsedPlaces = [NSMutableArray array];
+            for (NSDictionary *place in response[@"predictions"]) {
+                [parsedPlaces addObject:[SPGooglePlacesAutocompletePlace placeFromDictionary:place apiKey:self.key]];
+            }
+            return parsedPlaces;
+        }
+    }
+    else{
+        return nil;
+    }
+    
+    return nil;
+}
+
 #pragma mark -
 #pragma mark NSURLConnection Delegate
 

@@ -67,6 +67,40 @@
     responseData = [[NSMutableData alloc] init];
 }
 
+- (NSDictionary *)fetchPlaceDetailsSynchronously:(NSError**) error{
+    if (!self.key) {
+        return nil;
+    }
+    
+    [self cancelOutstandingRequests];
+    
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self googleURLString]]];
+
+    NSURLResponse *response;
+    responseData = [[NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response
+                                                     error:error] mutableCopy];
+    if (!error) {
+        NSError *jsonError = nil;
+        NSDictionary *response = [NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&jsonError];
+        if (jsonError) {
+            [self failWithError:jsonError];
+            return nil;
+        }
+        if ([response[@"status"] isEqualToString:@"OK"]) {
+            result = response[@"result"];
+        }
+
+    }
+    else{
+        return nil;
+    }
+    
+    return result;
+}
+
 #pragma mark -
 #pragma mark NSURLConnection Delegate
 
