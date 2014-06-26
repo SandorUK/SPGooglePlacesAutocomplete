@@ -35,6 +35,10 @@
     return self;
 }
 
+- (void)cancel{
+    [googleConnection cancel];
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Query URL: %@", [self googleURLString]];
 }

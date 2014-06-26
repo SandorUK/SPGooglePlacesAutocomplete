@@ -17,6 +17,9 @@
 
 + (SPGooglePlacesPlaceDetailQuery *)query;
 
+/* Cancels all the requests. */
+- (void)cancel;
+
 /*!
  Issues a Place Details request and pulls down the results. If called twice, the first request will be cancelled and the request will be re-issued using the current property values.
  */

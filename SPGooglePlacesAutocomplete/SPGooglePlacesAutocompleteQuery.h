@@ -19,6 +19,9 @@
 
 + (SPGooglePlacesAutocompleteQuery *)query;
 
+/* Cancels all the requests. */
+- (void)cancel;
+
 /*!
  Pulls down places that match the query. If -fetchPlaces is called twice, the first request will be cancelled and the request will be re-issued using the current property values.
  */
